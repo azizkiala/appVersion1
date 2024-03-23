@@ -8,18 +8,22 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    public function create(){
+        return view('login');
+    }
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+            'telephone' => ['required', 'min:10'],
+            'password' => ['required', 'min:8'],
         ]);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard');
+            return redirect()->intended('connexion_user');
         }
+
         return back()->withErrors([
-            'email' => 'Identifiants incorrects.',
-        ])->onlyInput('email');
+            response()->json('Identifiants incorrects.'),
+        ])->onlyInput('telephone');
     }
 }
