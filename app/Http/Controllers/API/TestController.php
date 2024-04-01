@@ -1,26 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Auth;
 
-use App\Models\Cour;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class ConnexionController extends Controller
+class TestController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $cours = Cour::all();
-        return  "jhsjdskksnnksnknsknkbknfkkbnsfkb";
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
     {
         //
     }
@@ -37,14 +27,6 @@ class ConnexionController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
     {
         //
     }

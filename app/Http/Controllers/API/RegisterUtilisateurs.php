@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
+use Exception;
 use Rules\Password;
+use App\Models\Cour;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
@@ -11,10 +13,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 
 
-class RegisterController extends Controller
+class RegisterUtilisateurs extends Controller
 {
 
-    public function store_user(Request $request)
+    public function enregistrer(Request $request)
     {
         $file = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -29,7 +31,10 @@ class RegisterController extends Controller
         $user->password = Hash::make($file['password']);
         $user->save();
         $token = $user->createToken('nouveau_token')->plainTextToken();
-        Auth::login($user);
-        return response()->json($user, 201);
+        return response()->json([
+            'msg'=>'Creation reussi',
+            'status_code' => 200,
+            'utilisateur'=> $user
+            ]);
     }
 }
